@@ -29,4 +29,11 @@ class TaskRequest extends FormRequest
             "body"      => ['required']
         ];
     }
+
+    public function messages()
+    {
+        return [
+            "required" => ":attribute tidak boleh kosong",
+        ];
+    }
 }

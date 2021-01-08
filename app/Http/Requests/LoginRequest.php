@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UserRequest extends FormRequest
+class LoginRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,8 +25,8 @@ class UserRequest extends FormRequest
     {
         return [
             "name" => ['required'],
-            "email" => ['required', 'email', 'unique:users,email,' . $this->user->id ?? ''],
-            'role' => ['required', 'in:penguji,pengawas']
+            "email" => ['required', 'email'],
+            "device_name" => ['required']
         ];
     }
 
@@ -35,7 +35,6 @@ class UserRequest extends FormRequest
         return [
             "required" => ":attribute tidak boleh kosong",
             "email" => ":attribute harus bertipe email",
-            "in" => ":attribute harus penguji atau pengawas"
         ];
     }
 }

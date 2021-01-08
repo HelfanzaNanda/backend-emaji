@@ -28,4 +28,14 @@ class ToolRequest extends FormRequest
             'image' => ['required', 'image', 'mimes:png,jpg']
         ];
     }
+
+    public function messages()
+    {
+        return [
+            "required" => ":attribute tidak boleh kosong",
+            "image" => ":attribute harus berupa gambar",
+            "mimes" => ":attribute harus bertipe png atau jpg",
+        ];
+    }
+
 }
