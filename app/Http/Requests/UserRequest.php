@@ -25,7 +25,7 @@ class UserRequest extends FormRequest
     {
         return [
             "name" => ['required'],
-            "email" => ['required', 'email', 'unique:users,email,' . $this->user->id ?? ''],
+            "email" => ['required', 'email', 'unique:users,email,' . $this->user ? $this->user->id : ''],
             'role' => ['required', 'in:penguji,pengawas']
         ];
     }
