@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api\Admin;
 use App\Models\User;
 use App\Http\Controllers\Controller;
 use App\Http\Repositories\UserRepository;
-use App\Http\Requests\UserRequest;
+use App\Http\Requests\User\{ CreateRequest, UpdateRequest };
 use App\Http\Resources\Admin\UserResource;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -29,8 +29,9 @@ class UserController extends Controller
         return response()->json($response, Response::HTTP_OK);
     }
 
-    public function store(UserRequest $request)
+    public function store(CreateRequest $request)
     {
+
         $this->user->store($request->all());
         $response = [
             'message' => 'successfully added data',
@@ -40,7 +41,7 @@ class UserController extends Controller
         return response()->json($response, Response::HTTP_CREATED);
     }
 
-    public function update(UserRequest $request, User $user)
+    public function update(UpdateRequest $request, User $user)
     {
         $this->user->update($request->all(), $user);
         $response = [

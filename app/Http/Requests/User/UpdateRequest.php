@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\User;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UserRequest extends FormRequest
+class UpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,7 +25,7 @@ class UserRequest extends FormRequest
     {
         return [
             "name" => ['required'],
-            "email" => 'required|email|unique:users,email,' . optional($this->user)->id,
+            "email" => ['required', 'email','unique:users,email,' . $this->user->id ],
             'role' => ['required', 'in:penguji,pengawas']
         ];
     }
@@ -35,7 +35,8 @@ class UserRequest extends FormRequest
         return [
             "required" => ":attribute tidak boleh kosong",
             "email" => ":attribute harus bertipe email",
-            "in" => ":attribute harus penguji atau pengawas"
+            "in" => ":attribute harus penguji atau pengawas",
+            "unique" => ":attribute sudah pernah di daftarkan"
         ];
     }
 }
